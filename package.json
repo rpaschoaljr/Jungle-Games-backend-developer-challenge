@@ -1,0 +1,38 @@
+{
+  "name": "distributed-wagering-processor",
+  "version": "1.0.0",
+  "description": "Distributed Wagering Processor for iGaming",
+  "type": "module",
+  "scripts": {
+    "start:dev": "bun scripts/dev.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:unit": "bun test tests/unit",
+    "test:security": "bun test tests/unit/security",
+    "test:integration": "bun test tests/integration",
+    "test:concurrency": "bun test tests/concurrency",
+    "test:load": "bun scripts/load-test/load-runner.ts",
+    "test:stress": "bun scripts/load-test/load-runner.ts",
+    "check:lines": "bun scripts/check-file-lines.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.700.0",
+    "@mikro-orm/core": "^7.2.6",
+    "@mikro-orm/nestjs": "^7.1.0",
+    "@mikro-orm/postgresql": "^7.2.6",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/swagger": "^12.1.0",
+    "pg": "^8.13.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "uuid": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:19rc1
+    container_name: jungle_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: jungle_user
+      POSTGRES_PASSWORD: jungle_secret
+      POSTGRES_DB: jungle_wagering
+      PGDATA: /var/lib/postgresql/19/main
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jungle_user -d jungle_wagering"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  sqs:
+    image: softwaremill/elasticmq-native:latest
+    container_name: jungle_sqs
+    restart: unless-stopped
+    ports:
+      - "4566:9324"
+
+volumes:
+  postgres_data:
